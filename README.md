@@ -9,7 +9,10 @@ to do:                 | . |
 ---------------------- | --|
  remap keys            | 🔄|
  get micro-like GUI    | ✅ |
- get micro-like statusbar | ❌ |
+ get micro-like statusbar | ✅ |
+
+##Statusbar
+ Statusbar is only available for NeoVim
  
 ## Available Keybinds
 
