@@ -1,12 +1,17 @@
+set mouse:a
+set number
 set nocompatible
 let s:hidden_all = 1
 set noshowmode
 set hlsearch!
+set cursorline
 
-highlight EndOfBuffer ctermfg=0
+highlight Normal  ctermbg=235
+highlight EndOfBuffer ctermfg=235 ctermbg=235
 set shortmess+=I
 
-highlight StatusLineNC ctermfg=0 ctermbg=0 cterm=NONE
+highlight LineNr ctermfg=246 ctermbg=237
+
 
 " Vim8 Specific
 highlight StatusLineTerm ctermfg=0 ctermbg=0 cterm=NONE
@@ -14,6 +19,7 @@ highlight StatusLineTermNC ctermfg=0 ctermbg=0 cterm=NONE
 
 " Disable command key
 inoremap <silent> <esc> <nop>
+
 " Hack to make arrow keys work with vim8
 if has('nvim')
 else
@@ -40,8 +46,8 @@ function! PromptSave()
     endif
 endfunction
 " Save file
-nnoremap <C-O> :call PromptSave()<cr>
-inoremap <silent> <C-O> <C-O>:call PromptSave()<cr>
+nnoremap <C-S> :call PromptSave()<cr>
+inoremap <silent> <C-S> <C-O>:call PromptSave()<cr>
 
 
 function! OpenFile()
@@ -55,11 +61,10 @@ endfunction
 nnoremap <C-R> :call OpenFile()<cr>
 inoremap <silent> <C-R> <C-O>:call OpenFile()<cr>
  
-
 function! Exit()
     if &mod
         call inputsave()
-        let name = confirm('Save modified buffer? (Answering "No" will DISCARD changes.) ', "Yes\nNo\nCancel")
+        let name = confirm('Save changes to file before closing? ', "Y\nN\nCancel")
         if (name==3)
         elseif (name == 2)
             call ForceExit()
@@ -131,16 +136,6 @@ nnoremap <C-_> :call GotoLine()<cr>
 inoremap <silent> <C-_> <C-O>:call GotoLine()<cr>
 
 
-" Page up
-nnoremap <C-Y> <PageUp>
-inoremap <silent> <C-Y> <PageUp>
-
-
-" Page down
-nnoremap <C-V> <PageDown>
-inoremap <silent> <C-V> <PageDown>
-
-
 function! FirstLine()
     call feedkeys("\<C-\>\<C-o>gg")
 endfunction
@@ -163,17 +158,22 @@ inoremap <silent> <A-f> <C-O>n
 " Match parenthesis
 inoremap <silent> <A-]> <C-O>%
 
-
-function! VisualMode()
-    call feedkeys("\<C-\>\<C-o>v")
-endfunction
-" Mark Text
-nnoremap <C-^> :call VisualMode()<cr>
-inoremap <silent> <C-^> <C-O>:call VisualMode()<cr>
+" Command key
+inoremap <silent> <C-e> <C-O>:
 
 
-" Copy Text
+
+
+
+" Copy Text 
 vnoremap <C-c> y
+
+
+" Cut Text
+vnoremap <C-x> d
+
+" Paste Text
+inoremap <silent> <C-v> <C-O>p
 
 
 " Indent
@@ -197,3 +197,30 @@ inoremap <silent> <C-w> <C-o>w
 
 " Start insert mode
 startinsert
+
+
+
+
+" brackets
+
+inoremap {<cr> {<cr>}<C-O><S-O>
+inoremap (<cr> (<cr>)<c-o><s-o>
+inoremap [<cr> [<cr>]<c-o><s-o>
+inoremap ( ()<left>
+inoremap { {}<left>
+inoremap [ []<left>
+inoremap <expr> ) strpart(getline('.'), col('.')-1, 1) == ")" ? "\<Right>" : ")"
+inoremap <expr> } strpart(getline('.'), col('.')-1, 1) == "}" ? "\<Right>" : "}"
+inoremap <expr> ] strpart(getline('.'), col('.')-1, 1) == "]" ? "\<Right>" : "]"
+inoremap <expr> ' strpart(getline('.'), col('.')-1, 1) == "'" ? "\<Right>" : "''<left>"
+inoremap <expr> " strpart(getline('.'), col('.')-1, 1) == "\"" ? "\<Right>" : "\"\"<left>"
+nnoremap ' mmbi'<esc>ea'<esc>`m<right>
+nnoremap " mmbi"<esc>ea"<esc>`m<right>
+nnoremap ( mmbi(<esc>ea)<esc>`m<right>
+nnoremap { mmbi{<esc>ea}<esc>`m<right>
+nnoremap [ mmbi[<esc>ea]<esc>`m<right>
+vnoremap ' <Esc>`<i'<Esc>`>a<right>'<Esc>
+vnoremap " <Esc>`<i"<Esc>`>a<right>"<Esc>
+vnoremap ( <Esc>`<i(<Esc>`>a<right>)<Esc>
+vnoremap { <Esc>`<i{<Esc>`>a<right>}<Esc>
+vnoremap [ <Esc>`<i[<Esc>`>a<right>]<Esc>

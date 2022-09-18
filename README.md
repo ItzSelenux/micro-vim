@@ -1,2 +1,15 @@
 # micro-vim
-MIcro style for nvim
+Micro style for nvim
+
+❌ : Not Started
+✅ : Done
+🔄 : In Progress
+
+to do:                 | . |
+---------------------- | --|
+ remap keys            | 🔄|
+ get micro-like GUI    | ✅ |
+ get micro-like statusbar | ❌ |
+
+
+
