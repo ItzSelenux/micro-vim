@@ -21,6 +21,8 @@ Keybind| Do           | Vim Keybind|
 Ctrl+C | Copy         | Y   |
 Ctrl+X | Cut          | D   |
 Ctrl+V | Paste        | P   |
+Ctrl+Z | Undo         | U   |
+Ctrl+Y | Redo         | Ctrl+R  |
 Ctrl+F | Find         | /   |
 Ctrl+E | Command      | :   |
 Ctrl+L | Col Nav Left | L   |

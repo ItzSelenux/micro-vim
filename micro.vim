@@ -211,6 +211,18 @@ vnoremap <C-x> d
 " Paste Text
 inoremap <silent> <C-v> <C-O>p
 
+function! Redo()
+   :redo
+endfunction
+
+" Undo
+inoremap <silent> <C-z> <C-O>u
+" Redo
+nnoremap <C-Y> :call Redo()<cr>
+inoremap <silent> <C-Y> <C-O>:call Redo()<cr>
+
+
+
 
 " Indent
 inoremap <silent> <A-}> <C-O>>>
