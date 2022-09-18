@@ -39,7 +39,8 @@ set statusline +=\ \|
 "show locale
 set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \"}%k  "
 
-
+"Right side data
+"set statusline +=*%=*PUT YOUR COMMANDS HERE*
 
 highlight Normal  ctermbg=235
 highlight EndOfBuffer ctermfg=235 ctermbg=235
