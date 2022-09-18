@@ -50,7 +50,7 @@ nnoremap <C-S> :call PromptSave()<cr>
 inoremap <silent> <C-S> <C-O>:call PromptSave()<cr>
 
 
-function! OpenFile()
+function! InsertFile()
     let l:name = input('File to insert [from ./]: ')
     if (l:name == "")
     else
@@ -58,8 +58,8 @@ function! OpenFile()
     endif
 endfunction
 " Read file
-nnoremap <C-R> :call OpenFile()<cr>
-inoremap <silent> <C-R> <C-O>:call OpenFile()<cr>
+nnoremap <C-P> :call InsertFile()<cr>
+inoremap <silent> <C-P> <C-O>:call InsertFile()<cr>
  
 function! Exit()
     if &mod
@@ -191,14 +191,16 @@ inoremap <silent> <C-k> <C-o>h
 
 
 " Word nav
-inoremap <silent> <C-w> <C-o>b
-inoremap <silent> <C-w> <C-o>w
+inoremap <silent> <A-Left> <C-o>b
+inoremap <silent> <A-Right> <C-o>w
+
+" Open File
+nnoremap <C-O> :e 
+inoremap <silent> <C-O> <C-O>:e 
 
 
 " Start insert mode
 startinsert
-
-
 
 
 " brackets
