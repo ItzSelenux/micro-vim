@@ -2,7 +2,7 @@
 Micro style for nvim
 
 ![micro-vim](/picture.png)
-Micro at the top, NeoVim at the bottom
+Micro at the top, NeoVim at the bottom-left, Vim at the bottom-right
 
 ❌ : Not Started
 ✅ : Done
@@ -13,9 +13,6 @@ to do:                 | . |
  remap keys            | 🔄|
  get micro-like GUI    | ✅ |
  get micro-like statusbar | ✅ |
-
-##Statusbar
- Statusbar is only available for NeoVim
  
 ## Available Keybinds
 

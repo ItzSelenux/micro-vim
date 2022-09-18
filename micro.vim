@@ -3,26 +3,41 @@ set number
 set nocompatible
 let s:hidden_all = 0
 set laststatus=2
-set noshowmode
+"set noshowmode
 set hlsearch!
 set cursorline
 
 " NeoVim Statusbar
 set statusline=
-set statusline +=%F       "path
-set statusline +=%m                "modified flag
-set statusline +=\ (%l             "current line
-set statusline +=,%v)            "virtual column number
-set statusline +=\ \|
-set statusline +=\ %{&ff}
-set statusline +=\ \|
-set statusline +=\ Ft:
-set statusline +=%{&filetype}
-set statusline +=\ \|
-set statusline += "%="
-set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \"}%k
 
-"set statusline +=             "current line
+"path
+set statusline +=[%f]
+
+"modified flag     
+set statusline +=%m
+
+"current line and column
+set statusline +=\ (%l  
+set statusline +=,%v)       
+set statusline +=\ \|
+
+"show extension type
+set statusline +=\ Ft:
+set statusline +=%y
+set statusline +=\ \|
+
+"show file type
+set statusline +=\ %{&ff} 
+
+
+"show extension (.cpp for example) instead of type
+"set statusline +=%{expand('%:e')}    
+set statusline +=\ \|
+
+"show locale
+set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \"}%k  "
+
+
 
 
 highlight Normal  ctermbg=235
@@ -39,7 +54,7 @@ highlight StatusLineTerm ctermfg=0 ctermbg=0 cterm=NONE
 highlight StatusLineTermNC ctermfg=0 ctermbg=0 cterm=NONE
 
 " Disable command key
-inoremap <silent> <esc> <nop>
+"inoremap <silent> <esc> <nop>
 
 " Hack to make arrow keys work with vim8
 if has('nvim')
@@ -219,11 +234,14 @@ inoremap <silent> <A-Right> <C-o>w
 nnoremap <C-O> :e 
 inoremap <silent> <C-O> <C-O>:e 
 
+" Insert Mode
+nnoremap <C-1> :e 
+inoremap <silent> <C-n1> <C-O>:e 
+
 
 
 function! Help()
-    :help
-		'Enter line number, column number: '
+    :help 
 endfunction
 
 " Open Help
