@@ -6,6 +6,8 @@ set laststatus=2
 "set noshowmode
 set hlsearch!
 set cursorline
+set ignorecase
+set hlsearch
 
 " NeoVim Statusbar
 set statusline=
@@ -36,7 +38,6 @@ set statusline +=\ \|
 
 "show locale
 set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \"}%k  "
-
 
 
 
@@ -120,16 +121,11 @@ nnoremap <C-Q> :call Exit()<cr>
 inoremap <silent> <C-Q> <C-O>:call Exit()<cr>
 
 
-function! SearchFile()
-    let l:name = input('Search: ')
-    if (name == "")
-    else
-        call feedkeys("\<C-\>\<C-o>/".name."\<CR>")
-    endif
-endfunction
 " Search file
-nnoremap <C-F> :call SearchFile()<cr>
-inoremap <silent> <C-F> <C-O>:call SearchFile()<cr>
+nnoremap <C-F> :/
+inoremap <silent> <C-F> <C-O>:/
+nnoremap <C-H> :s/find/replace/c 
+inoremap <silent> <C-H> <C-O>:s/find/replace/c 
 
 
 function! ShowInfo()
@@ -195,11 +191,9 @@ inoremap <silent> <A-f> <C-O>n
 inoremap <silent> <A-]> <C-O>%
 
 " Command key
+nnoremap <silent> <C-e> <C-O>:
 inoremap <silent> <C-e> <C-O>:
-
-
-
-
+vnoremap <BS> x
 
 " Copy Text 
 vnoremap <C-c> y
@@ -220,9 +214,6 @@ inoremap <silent> <C-z> <C-O>u
 " Redo
 nnoremap <C-Y> :call Redo()<cr>
 inoremap <silent> <C-Y> <C-O>:call Redo()<cr>
-
-
-
 
 " Indent
 inoremap <silent> <A-}> <C-O>>>
@@ -251,7 +242,6 @@ nnoremap <C-1> :e
 inoremap <silent> <C-n1> <C-O>:e 
 
 
-
 function! Help()
     :help 
 endfunction
@@ -265,7 +255,6 @@ startinsert
 
 
 " brackets
-
 inoremap {<cr> {<cr>}<C-O><S-O>
 inoremap (<cr> (<cr>)<c-o><s-o>
 inoremap [<cr> [<cr>]<c-o><s-o>

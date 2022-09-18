@@ -24,6 +24,7 @@ Ctrl+V | Paste        | P   |
 Ctrl+Z | Undo         | U   |
 Ctrl+Y | Redo         | Ctrl+R  |
 Ctrl+F | Find         | /   |
+Ctrl+F | Find and replace | :s  |
 Ctrl+E | Command      | :   |
 Ctrl+L | Col Nav Left | L   |
 Ctrl+R | Col Nav Left | H   |
@@ -36,6 +37,17 @@ Alt+\  | Go to Firt Line | gg |
 Alt+/  | Go to Last Line | G |
 Alt+Left | Word Nav Left | B |
 Alt+Right | Word Nav Right | w |
+
+## Unchanged Keybinds
+
+Keybind| Do           |
+-------| ------------ |
+Esc    | Exit mode    |
+I      | Insert Mode  |
+V      | Visual Mode  |
+
+
+
 
 
 
