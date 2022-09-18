@@ -1,7 +1,8 @@
 set mouse:a
 set number
 set nocompatible
-let s:hidden_all = 1
+let s:hidden_all = 0
+set laststatus=2
 set noshowmode
 set hlsearch!
 set cursorline
@@ -13,7 +14,10 @@ set statusline +=%m                "modified flag
 set statusline +=\ (%l             "current line
 set statusline +=,%v)            "virtual column number
 set statusline +=\ \|
-set statusline +=\ Ft:%{&ff}             "file format
+set statusline +=\ %{&ff}
+set statusline +=\ \|
+set statusline +=\ Ft:
+set statusline +=%{&filetype}
 set statusline +=\ \|
 set statusline += "%="
 set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \"}%k
