@@ -9,6 +9,7 @@ set cursorline
 " NeoVim Statusbar
 set statusline=
 set statusline +=%F       "path
+set statusline +=%m                "modified flag
 set statusline +=\ (%l             "current line
 set statusline +=,%v)            "virtual column number
 set statusline +=\ \|
@@ -17,14 +18,14 @@ set statusline +=\ \|
 set statusline += "%="
 set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \"}%k
 
-set statusline +=*%=%5l%*             "current line
+"set statusline +=             "current line
 
 
 highlight Normal  ctermbg=235
 highlight EndOfBuffer ctermfg=235 ctermbg=235
 set shortmess+=I
 
-highlight LineNr ctermfg=246 ctermbg=237
+highlight LineNr ctermfg=246 ctermbg=236
 hi CursorLineNr term=bold ctermbg=235 ctermfg=White gui=bold guifg=white
 
 hi CursorLine cterm=NONE ctermbg=236

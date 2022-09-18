@@ -1,6 +1,9 @@
 # micro-vim
 Micro style for nvim
 
+![micro-vim](/picture.png)
+Micro at the top, NeoVim at the bottom
+
 ❌ : Not Started
 ✅ : Done
 🔄 : In Progress
