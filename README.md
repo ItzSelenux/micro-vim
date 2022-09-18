@@ -11,6 +11,8 @@ Micro at the top, NeoVim at the bottom-left, Vim at the bottom-right
 to do:                 | . |
 ---------------------- | --|
  remap keys            | 🔄|
+ Direct replace when selecting | ❌|
+ see find on realtime (insert mode) | ❌|
  get micro-like GUI    | ✅ |
  get micro-like statusbar | ✅ |
  
