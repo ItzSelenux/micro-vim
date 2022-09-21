@@ -41,8 +41,6 @@ set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bom
 
 "Right side data                                                                                  
 "set statusline +=%=NeoVim\ 0.7.2 
-
-
 highlight Normal  ctermbg=235
 highlight EndOfBuffer ctermfg=235 ctermbg=235
 set shortmess+=I
