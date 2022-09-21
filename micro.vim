@@ -39,6 +39,8 @@ set statusline +=\ \|
 "show locale
 set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \"}%k  "
 
+"Right side data                                                                                  
+"set statusline +=%=NeoVim\ 0.7.2 
 
 
 highlight Normal  ctermbg=235
@@ -209,24 +211,46 @@ function! Redo()
    :redo
 endfunction
 
+function! Deline()
+   :.d
+endfunction
+
+function! Duline()
+   :t.
+endfunction
+
 " Undo
 inoremap <silent> <C-z> <C-O>u
+
 " Redo
 nnoremap <C-Y> :call Redo()<cr>
 inoremap <silent> <C-Y> <C-O>:call Redo()<cr>
+
+" Delete Line
+nnoremap <C-K> :call Deline()<cr>
+inoremap <silent> <C-K> <C-O>:call Deline()<cr>
+
+" Duplicate Line
+nnoremap <C-D> :call Duline()<cr>
+inoremap <silent> <C-D> <C-O>:call Duline()<cr>
+
+" Select All
+inoremap <silent> <C-a> <C-[>ggVG
+nnoremap <C-A> <C-[> ggVG
+
 
 " Indent
 inoremap <silent> <A-}> <C-O>>>
 inoremap <silent> <A-{> <C-O><<
 
 
-" Justify
+"" Justify
 inoremap <silent> <C-J> <C-O>gqk
 
 
 " Col nav
-inoremap <silent> <C-L> <C-o>l
-inoremap <silent> <C-k> <C-o>h
+inoremap <silent> <C-u> <C-o>l
+inoremap <silent> <C-y> <C-o>h
 
 
 " Word nav
@@ -237,7 +261,7 @@ inoremap <silent> <A-Right> <C-o>w
 nnoremap <C-O> :e 
 inoremap <silent> <C-O> <C-O>:e 
 
-" Insert Mode
+" command mode Mode
 nnoremap <C-1> :e 
 inoremap <silent> <C-n1> <C-O>:e 
 

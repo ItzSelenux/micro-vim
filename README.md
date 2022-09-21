@@ -15,6 +15,8 @@ to do:                 | . |
  see find on realtime (insert mode) | ❌|
  get micro-like GUI    | ✅ |
  get micro-like statusbar | ✅ |
+ Select all on (insert) Visual to no press "i" after this| ❌|
+
  
 ## Available Keybinds
 
@@ -27,9 +29,11 @@ Ctrl+Z | Undo         | U   |
 Ctrl+Y | Redo         | Ctrl+R  |
 Ctrl+F | Find         | /   |
 Ctrl+F | Find and replace | :s  |
+Ctrl+A | Select all   | ggVG (only normal mode)  |
 Ctrl+E | Command      | :   |
-Ctrl+L | Col Nav Left | L   |
-Ctrl+R | Col Nav Left | H   |
+Ctrl+Y | Col Nav Left | L   |
+Ctrl+D | Duplicate Line | :t.|
+Ctrl+K | Delete Line  | :.d |
 Ctrl+P | Insert File  | P   |
 Ctrl+O | Open File    | :e  |
 Ctrl+S | Save File    | :x  |
