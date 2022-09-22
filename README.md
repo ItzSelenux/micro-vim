@@ -11,6 +11,7 @@ Micro at the top, NeoVim at the bottom-left, Vim at the bottom-right
 to do:                 | . |
 ---------------------- | --|
  remap keys            | 🔄|
+ Create optional conf in lua   | 🔄|
  Direct replace when selecting | ❌|
  see find on realtime (insert mode) | ❌|
  get micro-like GUI    | ✅ |
