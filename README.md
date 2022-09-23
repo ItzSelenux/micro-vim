@@ -32,7 +32,8 @@ Ctrl+F | Find         | /   |
 Ctrl+F | Find and replace | :s  |
 Ctrl+A | Select all   | ggVG (only normal mode)  |
 Ctrl+E | Command      | :   |
-Ctrl+Y | Col Nav Left | L   |
+Ctrl+Left | Col Nav Left | H   |
+Ctrl+Right | Col Nav Right | L   |
 Ctrl+D | Duplicate Line | :t.|
 Ctrl+K | Delete Line  | :.d |
 Ctrl+P | Insert File  | P   |

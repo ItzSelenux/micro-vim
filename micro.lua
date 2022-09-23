@@ -22,7 +22,12 @@ highlight LineNr ctermfg=246 ctermbg=236
 hi CursorLineNr term=bold ctermbg=235 ctermfg=White gui=bold guifg=white
 
 hi CursorLine cterm=NONE ctermbg=236
+startinsert 
 ]])
+
+function ForceExit()
+vim.cmd([[q!]])
+end
 
 --[[
 function! ForceExit()
@@ -237,7 +242,6 @@ endfunction
 --inoremap <silent> <C-G> <C-O>:call Help()<cr>
 
 --Start insert mode
-startinsert
 
 
 --brackets

@@ -247,8 +247,8 @@ inoremap <silent> <C-J> <C-O>gqk
 
 
 " Col nav
-inoremap <silent> <C-u> <C-o>l
-inoremap <silent> <C-y> <C-o>h
+inoremap <silent> <C-Right> <C-o>l
+inoremap <silent> <C-Left> <C-o>h
 
 
 " Word nav
