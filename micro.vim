@@ -3,7 +3,7 @@ set number
 set nocompatible
 let s:hidden_all = 0
 set laststatus=2
-"set noshowmode
+set guicursor=
 set hlsearch!
 set cursorline
 set ignorecase
