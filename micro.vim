@@ -1,13 +1,17 @@
+"source $HOME/.config/nvim/vim-plug/plugins.vim
+
+
 set mouse:a
 set number
 set nocompatible
 let s:hidden_all = 0
-set laststatus=2
+uxset laststatus=2
 set guicursor=
 set hlsearch!
 set cursorline
 set ignorecase
 set hlsearch
+let NVersion=system("nvim --version | grep NVIM | tail -c 6")
 
 " NeoVim Statusbar
 set statusline=
@@ -40,7 +44,9 @@ set statusline +=\ \|
 set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \"}%k  "
 
 "Right side data                                                                                  
-"set statusline +=%=NeoVim\ 0.7.2 
+set statusline +=%=NeoVim\ 
+execute "set statusline +=" . NVersion
+
 highlight Normal  ctermbg=235
 highlight EndOfBuffer ctermfg=235 ctermbg=235
 set shortmess+=I
@@ -199,6 +205,7 @@ vnoremap <BS> x
 vnoremap <C-c> y
 
 
+
 " Cut Text
 vnoremap <C-x> d
 
@@ -298,3 +305,7 @@ vnoremap " <Esc>`<i"<Esc>`>a<right>"<Esc>
 vnoremap ( <Esc>`<i(<Esc>`>a<right>)<Esc>
 vnoremap { <Esc>`<i{<Esc>`>a<right>}<Esc>
 vnoremap [ <Esc>`<i[<Esc>`>a<right>]<Esc>
+
+
+
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"
