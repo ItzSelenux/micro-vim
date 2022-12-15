@@ -1,16 +1,17 @@
 "source $HOME/.config/nvim/vim-plug/plugins.vim
 
 
-set mouse:a
+sset mouse:a
 set number
 set nocompatible
 let s:hidden_all = 0
-uxset laststatus=2
+set laststatus=2
 set guicursor=
 set hlsearch!
 set cursorline
 set ignorecase
 set hlsearch
+set clipboard+=unnamedplus
 let NVersion=system("nvim --version | grep NVIM | tail -c 6")
 
 " NeoVim Statusbar
