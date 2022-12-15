@@ -1,7 +1,7 @@
 "source $HOME/.config/nvim/vim-plug/plugins.vim
 
 
-sset mouse:a
+set mouse:a
 set number
 set nocompatible
 let s:hidden_all = 0
