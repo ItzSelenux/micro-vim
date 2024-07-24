@@ -1,7 +1,7 @@
 # micro-vim
 Micro style for nvim
 
-![micro-vim](/picture.png)
+![micro-vim](picture.webp)
 Micro at the top, NeoVim at the bottom-left, Vim at the bottom-right
 
 ❌ : Not Started
@@ -11,7 +11,7 @@ Micro at the top, NeoVim at the bottom-left, Vim at the bottom-right
 to do:                 | . |
 ---------------------- | --|
  remap keys            | 🔄|
- Create optional conf in lua   | 🔄|
+ Create optional conf in lua   | ✅|
  Direct replace when selecting | ❌|
  see find on realtime (insert mode) | ❌|
  get micro-like GUI    | ✅ |

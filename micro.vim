@@ -1,5 +1,14 @@
 "source $HOME/.config/nvim/vim-plug/plugins.vim
+"set termguicolors
 
+highlight Normal  ctermbg=235
+highlight EndOfBuffer ctermfg=235 ctermbg=235
+set shortmess+=I
+
+highlight LineNr ctermfg=246 ctermbg=236
+hi CursorLineNr term=bold ctermbg=235 ctermfg=White gui=bold guifg=white
+
+hi CursorLine cterm=NONE ctermbg=236
 
 set mouse:a
 set number
@@ -12,7 +21,6 @@ set cursorline
 set ignorecase
 set hlsearch
 set clipboard+=unnamedplus
-let NVersion=system("nvim --version | grep NVIM | tail -c 6")
 
 " NeoVim Statusbar
 set statusline=
@@ -20,74 +28,77 @@ set statusline=
 "path
 set statusline +=[%f]
 
-"modified flag     
+"modified flag
 set statusline +=%m
 
 "current line and column
-set statusline +=\ (%l  
-set statusline +=,%v)       
+set statusline +=\ (%l
+set statusline +=,%v)
 set statusline +=\ \|
 
 "show extension type
 set statusline +=\ Ft:
-set statusline +=%y
+
+if has('nvim')
+	set statusline +=%y
+else
+	let ext = expand('%:e')
+	let &statusline = &statusline . ' %<'.ext
+endif
+
 set statusline +=\ \|
 
 "show file type
-set statusline +=\ %{&ff} 
-
+set statusline +=\ %{&ff}
 
 "show extension (.cpp for example) instead of type
-"set statusline +=%{expand('%:e')}    
+
+"set statusline +=%{expand('%:e')}
+
 set statusline +=\ \|
 
 "show locale
 set statusline +=\ %{\"\".(&fenc==\"\"?&enc:&fenc).((exists(\"+bomb\")\ &&\ &bomb)?\",B\":\"\").\"\ \"}%k  "
 
-"Right side data                                                                                  
-set statusline +=%=NeoVim\ 
-execute "set statusline +=" . NVersion
+"Right side data
+if has('nvim')
+	let NVersion=system("nvim --version | grep NVIM | tail -c 7")
+	set statusline+=%=\ NVIM\ 
+else
+	let NVersion=system("vim --version | head -n 1 | cut -d ' ' -f 5")
+	set statusline+=%=\ VIM\ 
+endif
 
-highlight Normal  ctermbg=235
-highlight EndOfBuffer ctermfg=235 ctermbg=235
+
+execute "set statusline +=". NVersion
+
 set shortmess+=I
-
-highlight LineNr ctermfg=246 ctermbg=236
-hi CursorLineNr term=bold ctermbg=235 ctermfg=White gui=bold guifg=white
-
-hi CursorLine cterm=NONE ctermbg=236
-
-" Vim8 Specific
-highlight StatusLineTerm ctermfg=0 ctermbg=0 cterm=NONE
-highlight StatusLineTermNC ctermfg=0 ctermbg=0 cterm=NONE
-
-" Disable command key
-"inoremap <silent> <esc> <nop>
 
 " Hack to make arrow keys work with vim8
 if has('nvim')
 else
-    inoremap <esc>x <esc>x
+	inoremap <esc>x <esc>x
 endif
 
 
+
 function! ForceExit()
-    q!
+	q!
 endfunction
 
 
 function! PromptSave()
-    if @% != ""
-        write
-        return 1
-    endif
-    let l:name = input('File Name to Write: ')
-    if (l:name == "")
-        return 0
-    else
-        execute "write! ".l:name
-        return 1
-    endif
+	if @% != ""
+		write
+		return 1
+	endif
+	let l:name = input('File Name to Write: ')
+	if (l:name == "")
+		return 0
+	else
+		execute "write! ".l:name
+		return 1
+	endif
 endfunction
 " Save file
 nnoremap <C-S> :call PromptSave()<cr>
@@ -95,54 +106,55 @@ inoremap <silent> <C-S> <C-O>:call PromptSave()<cr>
 
 
 function! InsertFile()
-    let l:name = input('File to insert [from ./]: ')
-    if (l:name == "")
-    else
-        execute "read ".l:name
-    endif
+	let l:name = input('File to insert [from ./]: ')
+	if (l:name == "")
+	else
+		execute "read ".l:name
+	endif
 endfunction
 " Read file
 nnoremap <C-P> :call InsertFile()<cr>
 inoremap <silent> <C-P> <C-O>:call InsertFile()<cr>
- 
-function! Exit()
-    if &mod
-        call inputsave()
-        let name = confirm('Save changes to file before closing? ', "Y\nN\nCancel")
-        if (name==3)
-        elseif (name == 2)
-            call ForceExit()
-        else
-            if PromptSave() == 1
-                call ForceExit()
-            else
-            endif
-        endif
 
-    else
-        call ForceExit()
-    endif
+function! Exit()
+	if &mod
+		call inputsave()
+		let name = confirm('Save changes to file before closing? ', "Y\nN\nCancel")
+		if (name==3)
+		elseif (name == 2)
+			call ForceExit()
+		else
+			if PromptSave() == 1
+				call ForceExit()
+			else
+			endif
+		endif
+
+	else
+		call ForceExit()
+	endif
 endfunction
+
 " Exit app
 nnoremap <C-Q> :call Exit()<cr>
 inoremap <silent> <C-Q> <C-O>:call Exit()<cr>
 
 
-" Search file
+" Search
 nnoremap <C-F> :/
 inoremap <silent> <C-F> <C-O>:/
-nnoremap <C-H> :s/find/replace/c 
-inoremap <silent> <C-H> <C-O>:s/find/replace/c 
+nnoremap <C-H> :s/find/replace/c
+inoremap <silent> <C-H> <C-O>:s/find/replace/c
 
 
 function! ShowInfo()
-    let curline = line('.')
-    let totalline = line('$')
-    let curcol = col('.')
-    let totalcol = col('$')
-    let lineperc = 100 * curline / totalline
-    let colperc = 100 * curcol / totalcol
-    echo "[ line ". curline . "/". totalline ." (".lineperc."%), col ".curcol. "/".totalcol." (".colperc."%) ]"
+	let curline = line('.')
+	let totalline = line('$')
+	let curcol = col('.')
+	let totalcol = col('$')
+	let lineperc = 100 * curline / totalline
+	let colperc = 100 * curcol / totalcol
+	echo "[ line ". curline . "/". totalline ." (".lineperc."%), col ".curcol. "/".totalcol." (".colperc."%) ]"
 endfunction
 " Show cursor info
 nnoremap <C-C> :call ShowInfo()<cr>
@@ -150,25 +162,25 @@ inoremap <silent> <C-C> <C-O>:call ShowInfo()<cr>
 
 
 function! GotoLine()
-    let name = input('Enter line number, column number: ')
-    if (name == "")
-    else
-        let newlist = split(name, "[ ,]")
-        let cnt = 0
-        let r = line(".")
-        let c = col(".")
-        for i in newlist
-            if i != ""
-                if cnt == 0
-                    let r = i
-                elseif cnt == 1
-                    let c = i
-                endif
-            endif
-            let cnt += 1
-        endfor
-        call cursor(r, c)
-    endif
+	let name = input('Enter line number, column number: ')
+	if (name == "")
+	else
+		let newlist = split(name, "[ ,]")
+		let cnt = 0
+		let r = line(".")
+		let c = col(".")
+		for i in newlist
+			if i != ""
+				if cnt == 0
+					let r = i
+				elseif cnt == 1
+					let c = i
+				endif
+			endif
+			let cnt += 1
+		endfor
+		call cursor(r, c)
+	endif
 endfunction
 " Goto line, col
 nnoremap <C-_> :call GotoLine()<cr>
@@ -176,11 +188,11 @@ inoremap <silent> <C-_> <C-O>:call GotoLine()<cr>
 
 
 function! FirstLine()
-    call feedkeys("\<C-\>\<C-o>gg")
+	call feedkeys("\<C-\>\<C-o>gg")
 endfunction
 
 function! LastLine()
-    call feedkeys("\<C-\>\<C-o>G")
+	call feedkeys("\<C-\>\<C-o>G")
 endfunction
 " First Line
 nnoremap <A-\> :call FirstLine()<cr>
@@ -202,10 +214,8 @@ nnoremap <silent> <C-e> <C-O>:
 inoremap <silent> <C-e> <C-O>:
 vnoremap <BS> x
 
-" Copy Text 
+" Copy Text
 vnoremap <C-c> y
-
-
 
 " Cut Text
 vnoremap <C-x> d
@@ -264,16 +274,24 @@ inoremap <silent> <A-Left> <C-o>b
 inoremap <silent> <A-Right> <C-o>w
 
 " Open File
-nnoremap <C-O> :e 
-inoremap <silent> <C-O> <C-O>:e 
+nnoremap <C-O> :e
+inoremap <silent> <C-O> <C-O>:e
 
 " command mode Mode
-nnoremap <C-1> :e 
-inoremap <silent> <C-n1> <C-O>:e 
+nnoremap <C-1> :e
+inoremap <silent> <C-n1> <C-O>:e
+
+nnoremap <C-4> :ter make clean<CR>
+inoremap <silent> <C-4> <Esc>:ter make clean<CR>i
+
+nnoremap <C-5> :ter make<CR>
+inoremap <silent> <C-5> <Esc>:ter make<CR>i
+nnoremap <C-6> :ter make test<CR>
+inoremap <silent> <C-6> <Esc>:ter make test<CR>i
 
 
 function! Help()
-    :help 
+	:help
 endfunction
 
 " Open Help
@@ -282,7 +300,6 @@ inoremap <silent> <C-G> <C-O>:call Help()<cr>
 
 " Start insert mode
 startinsert
-
 
 " brackets
 inoremap {<cr> {<cr>}<C-O><S-O>
@@ -306,7 +323,3 @@ vnoremap " <Esc>`<i"<Esc>`>a<right>"<Esc>
 vnoremap ( <Esc>`<i(<Esc>`>a<right>)<Esc>
 vnoremap { <Esc>`<i{<Esc>`>a<right>}<Esc>
 vnoremap [ <Esc>`<i[<Esc>`>a<right>]<Esc>
-
-
-
-inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"
